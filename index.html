@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SRM NEXUS</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="styles.css">
+	<link rel="icon" type="image/x-icon" href="Logo.png">
+</head>
+<style>
+	/* Add the @font-face rule here */
+	@font-face {
+		font-family: 'EthnocentricRg-Regular';
+		font-style: normal;
+		font-weight: normal;
+		src: local('EthnocentricRg-Regular'), url('ethnocentric rg.woff') format('woff');
+	}
+
+	.logo6 {
+		transition: transform 1s;
+		/* Add a transition for smooth animation */
+	}
+
+	.logo6:hover {
+		transform: rotate(360deg);
+		/* Rotate the logo by 360 degrees on hover */
+	}
+
+	/* Style the hiring tag */
+	.card {
+		position: relative;
+		margin-bottom: 20px;
+	}
+
+	pre {
+		background-color: #fff;
+		border-radius: 8px;
+		font-size: 14px;
+		/* Default font size for larger screens */
+		overflow-x: auto;
+		/* Add horizontal scroll when content overflows */
+		overflow-y: auto;
+		max-width: fit-content;
+		/* Limit the width to the available space */
+		white-space: pre-wrap;
+		/* CSS3 feature for setting text in the pre tag */
+		/* Prevent long words from causing horizontal scroll */
+		word-wrap: break-word;
+		/* Prevent long words from causing line breaks within words */
+		word-break: break-all;
+		/* Prevents overflow from creating a new line */
+		padding: 10px 20px;
+		/* Add some padding */
+		line-height: 1.5;
+		/* Specify a decent line height */
+		font-family: 'Courier New', Courier, monospace;
+		/* Specify Courier New as the font */
+		color: #333;
+		/* Set the text color to a dark grey */
+		border: 1px solid #ccc;
+
+		/*vertical scrol*/
+		max-height: 100%;
+		padding-right: 20px;
+	}
+
+	.superset-link {
+    display: flex;
+    align-items: center;
+    margin-right: 0px; /* Add margin to separate it from other links */
+}
+
+.superset-link a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 5px;
+    display: flex; /* Display the link as a flex element */
+    align-items: center; /* Center the content vertically */
+}
+
+.superset-link img {
+    height: 22px;
+    padding: 0px;
+    margin-left: 5px; /* Add margin to separate the image from the text */
+}
+
+
+
+
+	.popup {
+		position: fixed;
+		top: 86px;
+		left: -350px;
+		/* Initial position outside the screen */
+		width: 350px;
+		max-height: 90%;
+		background-color: #fff;
+		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+		transition: left 0.3s ease-in-out;
+		overflow-y: auto;
+		z-index: 1000;
+	}
+
+	.popup1 {
+		position: fixed;
+		top: 86px;
+		/* Initial position outside the screen */
+		right: -300%;
+		width: 350px;
+		max-height: 90%;
+		background-color: #fff;
+		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+		transition: right 0.3s ease;
+		/* Add a transition effect */
+		overflow-y: auto;
+		z-index: 1000;
+	}
+
+	.popup-content {
+		width: auto;
+		padding: 20px;
+	}
+
+	.close-button {
+		display: block;
+		margin-top: 10px;
+		cursor: pointer;
+		align-self: center;
+		width: 100%;
+		height: 40px;
+		background-color: #fff;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		font-size: 16px;
+		font-weight: bold;
+		color: #333;
+		transition: background-color 0.2s ease-in-out;
+
+		/* Align button to the center */
+
+
+	}
+
+	.close-button1 {
+		display: block;
+		margin-top: 10px;
+		cursor: pointer;
+		align-self: center;
+		width: 100%;
+		height: 40px;
+		background-color: #fff;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		font-size: 16px;
+		font-weight: bold;
+		color: #333;
+		text-decoration: none;
+		transition: background-color 0.2s ease-in-out;
+
+		/* Align button to the center */
+		/*smmoth scroll*/
+		/*smooth scroll*/
+
+		scroll-behavior: smooth;
+		/* Add a transition effect */
+		overflow-y: auto;
+		z-index: 1000;
+
+
+	}
+
+	.open-popup-button {
+		/*align to left*/
+		position: fixed;
+		bottom: 10px;
+		right: 20px;
+		width: 60px;
+		height: 60px;
+		background-color: #fff;
+		border-radius: 10%;
+		border: 1px solid #ccc;
+		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+		cursor: pointer;
+		transition: background-color 0.2s ease-in-out;
+		z-index: 998;
+
+		/*align to left*/
+	}
+
+	.flag-design {
+		position: fixed;
+		top: 100px;
+		/* Adjust the distance from the top */
+		left: 20px;
+		/* Place it on the left side */
+		width: fit-content;
+		/* Adjust the button width */
+		height: 60px;
+		/* Adjust the button height */
+		background-color: #0998e4;
+		/* Set the background color */
+		color: white;
+		/* Set text color */
+		border: none;
+		border-radius: 4px;
+		font-size: 16px;
+		font-weight: bold;
+		cursor: pointer;
+		transition: background-color 0.2s ease-in-out;
+		z-index: 1000;
+		clip-path: polygon(30px 0%, 100% 0%, 100% 100%, 30px 100%, 0 50%);
+
+		padding: 8px 16px;
+		text-align: center;
+		line-height: 1.5;
+	}
+
+	.flag-design:hover {
+		background-color: #e53935;
+		/* Change background color on hover */
+	}
+
+
+
+	.ctech-button1 {
+		position: absolute;
+        top: 101px; /* Adjust the distance from the top */
+        right: 20px; /* Adjust the distance from the right */
+        background-color: #0998e4;
+        color: white;
+        border: none;
+		width: fit-content;
+		height: fit-content;
+        border-radius: 4px;
+        padding: 8px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+        z-index: 998;
+    }
+
+    .ctech-button1:hover {
+        background-color: #e53935;
+        /* Change background color on hover */
+    }
+	.ctech-button {
+		position: absolute;
+		width: fit-content;
+		height: fit-content;
+        top: 101px; /* Adjust the distance from the top */
+        left: 20px; /* Adjust the distance from the right */
+        background-color: #0998e4;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+        z-index: 998;
+		/*hide after popup*/
+	}
+
+    .ctech-button:hover {
+        background-color: #e53935;
+        /* Change background color on hover */
+    }
+
+
+	.hiring-tag {
+		background-color: green;
+		color: white;
+		padding: 4px 8px;
+		border-radius: 4px;
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		font-weight: bold;
+	}
+
+
+.hover-message {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.hover-container:hover .hover-message {
+  display: block;
+}
+
+
+	.container {
+		margin-top: -17px;
+	}
+
+	.navbar {
+		background-color: #ffffff;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		padding: 1px 20px;
+		top: 52px;
+		right: 20px;
+		z-index: 999;
+		width: fit-content;
+	}
+
+	.navbar a {
+		margin-left: 30px;
+		text-decoration: none;
+		color: #000;
+		/* Set the font color to black */
+		font-weight: bold;
+		font-size: 16px;
+		/* Reduce the font size */
+		font-family: 'Arial', sans-serif;
+		/* Change the font family to Arial or any professional font you prefer */
+		text-transform: uppercase;
+		/* Uppercase the text for a more professional appearance */
+		transition: transform 0.2s ease-in-out;
+		/* Add animation transition */
+	}
+
+	.navbar a:hover {
+		transform: scale(1.1);
+		/* Add zoom-in effect on hover */
+	}
+
+	.navbar-toggle {
+		display: none;
+		/* Hide the toggle button by default for larger screens */
+	}
+
+	@media screen and (max-width: 900px) {
+		.navbar {
+			justify-content: center;
+			/* Center the links in small screens */
+		}
+
+		.navbar a {
+			margin: 5px;
+		}
+
+		.popup {
+			left: -100%;
+			width: 100%;
+		}
+
+		.popup1 {
+			right: -300%;
+			width: 100%;
+		}
+		.ctech-button1{
+			top: 101px;
+			width: fit-content;
+			height: fit-content;
+		}
+		.ctech-button{
+			top: 101px;
+			width: fit-content;
+			height: fit-content;
+		}
+	}
+
+	@media only screen and (max-width: 900px) {
+		.header {
+			height: 60px;
+			/* Reduce header height for smaller screens */
+		}
+
+		.header h1 {
+			font-size: 24px;
+			/* Reduce font size for smaller screens */
+		}
+
+		.navbar {
+			display: none;
+			/* Hide the navigation links for smaller screens */
+			flex-direction: column;
+			position: absolute;
+			top: 60px;
+			right: 0;
+			width: 100%;
+			margin: 0px;
+			background-color: #ffffff;
+			z-index: 999;
+			/* Ensure the toggle menu is below the header */
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+			max-height: auto;
+			overflow: hidden;
+			transition: max-height 0.3s ease-out;
+		}
+
+		.navbar.active {
+			display: flex;
+			/* Show the navigation links when active */
+			animation: slideDown 0.1s ease-in-out, fadeIn 0.1s ease-in-out;
+			margin-top: 16px;
+			align-items: flex-end;
+		}
+
+
+
+		@keyframes slideDown {
+			0% {
+				transform: translateY(+100%);
+			}
+
+			100% {
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes fadeIn {
+			0% {
+				opacity: 0;
+			}
+
+			100% {
+				opacity: 1;
+			}
+		}
+
+		.navbar a {
+			margin: 18px 0;
+		}
+
+		.navbar-toggle {
+			display: block;
+			/* Display the toggle button for smaller screens */
+			position: absolute;
+			top: 26px;
+			right: 20px;
+			font-size: 20px;
+			cursor: pointer;
+		}
+
+		.navbar-toggle.active .line-1 {
+			transform: rotate(-45deg) translate(-4px, 5px);
+		}
+
+		.navbar-toggle.active .line-2 {
+			opacity: 0;
+		}
+
+		.navbar-toggle.active .line-3 {
+			transform: rotate(45deg) translate(-4px, -5px);
+		}
+
+		.navbar-toggle .line {
+			width: 22px;
+			height: 3px;
+			background-color: #000;
+			margin: 5px 0;
+			transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+		}
+
+
+	}
+	@media (max-width: 768px) {
+	.card {
+		width: 100%;
+		/* Make the cards occupy the full width of the container */
+		margin: 20px auto;
+		/* Center the cards horizontally */
+		margin-top: 70px;
+	}
+}
+
+	.loader {
+		position: fixed;
+		z-index: 1000;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: #fff;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.loader-inner {
+		transform: translateY(-50%);
+	}
+
+
+
+
+
+	@keyframes loader {
+		0% {
+			transform: rotate(0deg);
+		}
+
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+	.loader-inner::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		border-top-color: #333;
+		animation: loader 0.3s linear infinite;
+	}
+	.loader.hidden {
+		animation: fadeOut 2s;
+		animation-fill-mode: forwards;
+	}
+	.log{
+		width: 100%;
+		height: 100%;
+		animation: rotate 2s linear infinite;
+		margin-top: 50px;
+		margin-bottom: -70px;
+	}
+	.logs{
+			width: 20%;
+			height: 20%;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 90px;
+			margin-bottom: -110px;
+			display: block;
+			animation: rotate 2s linear infinite;
+		}
+	@media screen and (max-width: 900px) {
+		.log{
+		width: 100%;
+		height: 100%;
+		animation: rotate 2s linear infinite;
+	}
+		.logs{
+			width: 50%;
+			height: 50%;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+			margin-bottom: 10px;
+
+			animation: rotate 2s linear infinite;
+		}
+}
+
+
+	.preloader {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #fff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 9999;
+	}
+
+	.logo {
+			width: 100px; /* Set the size of your logo */
+			height: 100px; /* Set the size of your logo */
+			background-image: url('Logo.png'); /* Replace with your logo image path */
+			background-size: contain;
+			background-repeat: no-repeat;
+			animation: rotateLogo 6s ease-in-out infinite;
+	}
+
+	@keyframes rotateLogo {
+			0%, 100% {
+					transform: rotate(0deg);
+			}
+			25% {
+					transform: rotate(360deg);
+			}
+			50% {
+					transform: rotate(720deg);
+			}
+			75% {
+					transform: rotate(1080deg);
+			}
+	}
+	.preloader.hidden {
+		animation: fadeOut 2s;
+		animation-fill-mode: forwards;
+	}
+	@keyframes fadeOut {
+		100% {
+			opacity: 0;
+			visibility: hidden;
+		}
+	}
+
+
+
+</style>
+
+<body>
+	<div class="preloader">
+        <div class="logo"></div>
+    </div>
+
+
+		<script>
+			window.addEventListener("load", function () {
+				const loader = document.querySelector(".preloader");
+				loader.className += " hidden"; // class "loader hidden"
+			});
+		</script>
+
+<div id="main-content">
+
+	<header class="main-header">
+		<div class="mes">
+			<!-- Add your logo image or text here -->
+			<img src="Logo.png" alt="Logo" class="logo6">
+			<img src="nexus.PNG" alt="Logo" class="logo1">
+		</div>
+		<header class="header">
+			<!-- Navbar Toggle Button -->
+			<div class="navbar-toggle" onclick="toggleNavbar()">
+				<div class="line line-1"></div>
+				<div class="line line-2"></div>
+				<div class="line line-3"></div>
+			</div>
+
+		</header>
+		<div class="navbar" id="navbar">
+    <a href="version.html" target="_blank" style="color: rgb(7, 37, 124);">VERSION 1.0</a>
+	<a href="https://clubdenbeta1.onrender.com/candidateLogin" target="_blank" style="color: rgb(7, 37, 124);">ClubDen [Hiring]</a>
+    <div class="superset-link">
+        <a href="superset.html" target="_blank">SUPERSET <img id="super" src="th.png" alt="Superset Logo"></a>
+    </div>
+
+		<a target="_blank" href="mailto:srmclubshandle@gmail.com?&subject=Regarding%20Club%20registration%20on%20SRM%20NEXUS&body=Dear%20Club%20Representative%20,%0A%0AWe%20are%20thrilled%20to%20have%20your%20club%20join%20us%20at%20SRM%20NEXUS!%20To%20complete%20the%20registration%20process,%20kindly%20provide%20the%20following%20details:%0A%0A1.%20Name%20of%20the%20Club:%0A2.%20Name%20of%20the%20Club%20Representative%20(who%20will%20manage%20their%20page%20on%20the%20website):%0A3.%20Contact%20Number%20of%20Club%20Representative:%0A4.%20Club%20Email%20ID:%0A5.%20Club%20Contact%20Number:%0A6.%20Description%20(including%20the%20vision%20and%20mission%20of%20the%20club):%0A7.%20Socials%20(Website,%20Facebook,%20Instagram,%20etc.):%0A8.%20Club%20HD%20Logo%20:%0A%0AOnce%20you%20have%20shared%20the%20required%20details,%20we%20will%20send%20you%20a%20confirmation%20email%20along%20with%20two%20document%20attachments%20that%20will%20grant%20access%20to%20the%20News%20section%20and%20the%20Headline%20page.%20Through%20the%20News%20section,%20you%20will%20be%20able%20to%20update%20website%20users%20about%20your%20club's%20activities,%20and%20the%20Headline%20page%20will%20allow%20you%20to%20highlight%20important%20club%20announcements.%0A%0AIn%20addition,%20the%20reply%20email%20will%20also%20contain%20credentials%20to%20access%20the%20ClubDen%20admin%20login.%20This%20will%20enable%20you%20to%20specify%20requirements%20for%20students%20who%20wish%20to%20join%20your%20club%20and%20manage%20club%20recruitment%20processes%20effectively.%0A%0AFeel%20free%20to%20reach%20out%20if%20you%20have%20any%20questions%20or%20need%20further%20assistance%20with%20the%20registration%20process.%0A%0AThank%20you%20for%20choosing%20SRM%20NEXUS,%20and%20we%20look%20forward%20to%20a%20successful%20collaboration!%0A%0ABest%20regards,%0ASRM%20NEXUS%20Team">
+    REGISTER YOUR CLUB
+</a>
+
+
+
+			<a href="aboutus.html" target="_blank" ;>ABOUT US</a>
+			<a href="https://www.srmist.edu.in/" target="_blank" ;><img class="logo3"
+					src="srm-institute-of-science-and-technology-logo-A378D5138F-seeklogo.com.png"></a>
+		</div>
+	</header>
+	<div class="container">
+		<div class="popup" id="popup">
+			<div class="popup-content">
+				<!-- Content of the pop-out page goes here -->
+				<h2>HEADLINES</h2>
+				<p>
+				<pre id="document-content"
+					style="font-size: 12px; width:100%; word-wrap: break-word;">Loading News...</pre>
+				</p>
+				<button class="close-button" onclick="closePopup()">Close</button>
+			</div>
+		</div>
+		<div class="popup1" id="popup1">
+			<div class="popup-content">
+				<h2>C-TECH</h2>
+				<h3>ANNOUNCEMENTS</h3>
+				<a class="close-button1 smooth-scroll-link" href="#document-content1">1<sup>st</sup> YEAR</a>
+				<a class="close-button1" href="#document-content2">2<sup>nd</sup> YEAR</a>
+				<a class="close-button1" href="#document-content3">3<sup>rd</sup> YEAR</a>
+				<a class="close-button1" href="#document-content4">4<sup>th</sup> YEAR</a>
+
+				<!-- Content of the pop-out page goes here -->
+
+				<p>
+					<p>
+	    <pre id="document-content1" class="1year" style="font-size: 12px; width:100%; word-wrap: break-word;">Loading News...</pre>
+	</p>
+
+				</p>
+				<p>
+				<pre id="document-content2" class="2year"
+					style="font-size: 12px; width:100%; word-wrap: break-word;">Loading News...</pre>
+				</p>
+				<p>
+				<pre id="document-content3" class="3year"
+					style="font-size: 12px; width:100%; word-wrap: break-word;">Loading News...</pre>
+				</p>
+				<p>
+				<pre id="document-content4" class="4year"
+					style="font-size: 12px; width:100%; word-wrap: break-word;">Loading News...</pre>
+				</p>
+
+				<button class="close-button" onclick="closePopup1()">Close</button>
+			</div>
+		</div>
+
+		<button class="open-popup-button ctech-button headlines-button" onclick="openPopup()" id="ctech-button">HEADLINES</button>
+<button class="open-popup-button1 ctech-button1 bulletin-button" onclick="openPopup1()" id="ctech-button1">BULLETIN</button>
+
+
+		<div class="card">
+
+			<div class="class-icon">
+				<div class="material-icons"><img class="xyz" src="Club Logo.svg"> </div>
+			</div>
+			<div class="card-content">
+				<div class="card-header"> Data Science Community SRM
+				</div>
+				<p class="full">
+					Where Data Meets Discovery!
+				</p>
+			</div>
+			<div class="card-footer">
+				<a href="datascience.html" class="view-button" target="_blank" ;>Discover</a>
+			</div>
+		</div>
+		<div class="card">
+
+			<div class="class-icon">
+				<div class="material-icons"><img class="xyz" src="logobc.png"> </div>
+			</div>
+			<div class="card-content">
+				<div class="card-header"> Blockchain Club SRM
+				</div>
+				<p class="full">
+					Crafting the Web3 Future,
+					One Block at a Time!
+				</p>
+			</div>
+			<div class="card-footer">
+				<a href="blockchain.html" class="view-button" target="_blank" ;>Discover</a>
+			</div>
+		</div>
+		<div class="card">
+			<div class="hiring-tag hover-container">Hiring<span class="hover-message">Navbar:ClubDen</span>
+			</div>
+			<div class="class-icon">
+				<div class="material-icons"><img class="xyz" src="Logo.png"> </div>
+			</div>
+			<div class="card-content">
+				<div class="card-header"> CLUB 2
+				</div>
+				<p class="full">
+					SLOGAN 2.
+				</p>
+			</div>
+			<div class="card-footer">
+				<a href="des2.html" class="view-button" target="_blank" ;>Discover</a>
+			</div>
+		</div>
+		<div class="card">
+			<div class="class-icon">
+				<div class="material-icons"><img class="xyz" src="Logo.png"> </div>
+			</div>
+			<div class="card-content">
+				<div class="card-header"> CLUB 3
+				</div>
+				<p class="full">
+					SLOGAN.
+				</p>
+			</div>
+			<div class="card-footer">
+				<a href="des2.html" class="view-button" target="_blank" ;>Discover</a>
+			</div>
+		</div>
+		<div class="card">
+			<div class="class-icon">
+
+				<div class="material-icons"><img class="xyz" src="Logo.png"> </div>
+			</div>
+			<div class="card-content">
+				<div class="card-header"> CLUB 4
+				</div>
+				<p class="full">
+					SLOGAN.
+				</p>
+			</div>
+			<div class="card-footer">
+				<a href="des2.html" class="view-button" target="_blank" ;>Discover</a>
+			</div>
+		</div>
+
+		<!-- Add more cards here as needed -->
+
+	</div>
+	<footer style="background-color: #f9f9f9; padding: 20px; text-align: center; font-size: 14px; color: #333; height:max-content;">
+		<div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 10px; height: fit-content;">
+			<img src="Logo.png" alt="Your Company Logo" style="height: 30px; margin-right: 10px;">
+			<span>&copy; 2023 SRM NEXUS. All rights reserved.</span>
+			<span style="display: block; margin-top: 2px;">Contact: <a
+					href="mailto:srmclubshandle.com">srmclubshandle.com</a></span>
+		</div>
+		<div>
+			<p>Jatin Kumar Gupta X Tanmay Soni</p>
+		</div>
+	</footer>
+</div>
+	<script>
+		// JavaScript function to toggle the navbar on mobile devices
+		function toggleNavbar() {
+			var navbar = document.getElementById("navbar");
+			navbar.classList.toggle("active");
+
+		}
+
+		// JavaScript function to open the pop-out page
+		function openPopup() {
+			var popup = document.getElementById("popup");
+			popup.style.left = "0";
+			var ctechButton = document.getElementById("ctech-button");
+
+
+		}
+		function openPopup1() {
+			console.log("Opening popup...");
+			var popup = document.getElementById("popup1");
+			/*popup right side*/
+			popup.style.right = "0";
+			// Remove the C-tech button from the DOM
+			var ctechButton = document.getElementById("ctech-button1");
+
+
+
+		}
+
+
+		// JavaScript function to close the pop-out page
+		function closePopup() {
+			var popup = document.getElementById("popup");
+			popup.style.left = "-100%"; // Move the pop-out page outside the screen
+			var ctechButton = document.getElementById("ctech-button");
+
+		}
+		function closePopup1() {
+			var popup = document.getElementById("popup1");
+			popup.style.right = "-300%"; // Move the pop-out page outside the screen
+			// Add the C-tech button back to the DOM
+			var ctechButton = document.getElementById("ctech-button1");
+
+		}
+
+
+
+
+		// Smooth scroll to the target section
+		function smoothScroll(target) {
+			const headerOffset = 70; // Adjust this value based on your header height
+			const element = document.getElementById(target);
+			const bodyRect = document.body.getBoundingClientRect().top;
+			const elementRect = element.getBoundingClientRect().top;
+			const elementPosition = elementRect - bodyRect;
+			const offsetPosition = elementPosition - headerOffset;
+
+			window.scrollBy({
+				top: offsetPosition,
+				behavior: "smooth"
+			});
+			// Smooth scroll function
+			function smoothScrollTo(target) {
+				const targetElement = document.querySelector(target);
+				if (targetElement) {
+					const offset = 70; // Adjust this value based on your header height
+					const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+
+					window.scrollTo({
+						top: targetPosition,
+						behavior: "smooth"
+					});
+				}
+			}
+
+			// Add event listeners to the close-button1 links
+			const smoothScrollLinksCloseButton1 = document.querySelectorAll(".close-button1");
+			smoothScrollLinksCloseButton1.forEach(link => {
+				link.addEventListener("click", event => {
+					event.preventDefault();
+					const target = event.currentTarget.getAttribute("href");
+					smoothScrollTo(target);
+				});
+			});
+
+			// Add an event listener to the "1st year" button
+const firstYearButton = document.querySelector(".1year");
+if (firstYearButton) {
+    firstYearButton.addEventListener("click", event => {
+        event.preventDefault();
+        smoothScrollTo("#document-content1"); // Scroll to the target section
+    });
+}
+
+// Smooth scroll function
+function smoothScrollTo(target) {
+    const targetElement = document.querySelector(target);
+    if (targetElement) {
+        const offset = 70; // Adjust this value based on your header height
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+
+        window.scrollTo({
+            top: targetPosition,
+            behavior: "smooth"
+        });
+    }
+}
+
+
+
+		}
+
+
+
+
+
+
+	</script>
+	<script>
+		fetch('https://script.google.com/macros/s/AKfycbw0dFCnix5Nt6JC2q0VZbVKHkJU2g-8GOPHAIAB4AnqwsQOegMfaVL7SAjtqjb9JOzF/exec')
+			.then(response => response.text())
+			.then(data => {
+				const documentContent = document.getElementById('document-content');
+				documentContent.textContent = data;
+			})
+			.catch(error => console.error('Error fetching document:', error));
+	</script>
+	<script>
+		fetch('https://script.google.com/macros/s/AKfycbylohYJ3OgX-Lb2zI9nemlr-rmDsnYA2Z-1TEORHOthFqekzmFKEArNrazFuJrcmOBA/exec')
+			.then(response => response.text())
+			.then(data => {
+				const documentContent = document.getElementById('document-content1');
+				documentContent.textContent = data;
+			})
+			.catch(error => console.error('Error fetching document:', error));
+	</script>
+	<script>
+
+		fetch('https://script.google.com/macros/s/AKfycbzUTffWOyr6f4R66IvtZrXxUOFUO4q8bj75aQR1OBhFoqiZ6Azx1o80ERdX7DK1VbruPQ/exec')
+			.then(response => response.text())
+			.then(data => {
+				const documentContent = document.getElementById('document-content2');
+				documentContent.textContent = data;
+			})
+			.catch(error => console.error('Error fetching document:', error));
+	</script>
+	<script>
+		fetch('https://script.google.com/macros/s/AKfycbz15KIupSIfK85GVHB4AcA9Xgfkn-6ByUsUJU-sMHmQxRw0SRh29pQSbGy3VrdgO8Ir/exec')
+			.then(response => response.text())
+			.then(data => {
+				const documentContent = document.getElementById('document-content3');
+				documentContent.textContent = data;
+			})
+			.catch(error => console.error('Error fetching document:', error));
+	</script>
+	<script>
+		fetch('https://script.google.com/macros/s/AKfycbzp12M7i19LdhIrY9ADEonovj0tBKgXJ1kG4X8doj9Y6JwHpLWkMv_IAPkyqYZCQ2gQlQ/exec')
+			.then(response => response.text())
+			.then(data => {
+				const documentContent = document.getElementById('document-content4');
+				documentContent.textContent = data;
+			})
+			.catch(error => console.error('Error fetching document:', error));
+	</script>
+
+
+	</script>
+	<script defer src="/_vercel/insights/script.js"></script>
+
+
+
+</body>
+
+</html>

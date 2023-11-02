@@ -1,0 +1,49 @@
+/* Add CSS to style the navigation bar */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.navbar {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+}
+
+.navbar a {
+    margin-left: 50px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    color: #555;
+}
+
+.container {
+    margin-top: 80px; /* Add space to avoid content overlapping with the fixed header */
+    padding: 20px;
+}
+.logo{
+  width:40px;
+}
+/* Add your custom styles for other elements as needed */
